@@ -40,11 +40,14 @@ def img(path):
             if(arr[i, j]==(0, 255, 0)):
                 arr[i,j]=(255, 255, 255)
 
-            tmpf=(arr2[i,j][0]+arr2[i,j][2])/2-arr2[i,j][1];
+            tmpf=(arr2[i,j][0]+arr2[i,j][2])/2
+                
+            if(tmpf!=0):
+                tmpf1=arr2[i,j][1]/tmpf
 
-            if tmpf*-1>=alc:
-                arr[i,j]=(255, 255, 0)
-       
+                if tmpf1>=alc:
+                    arr[i,j]=(255, 255, 0)
+           
 
     #uncomment for debug
     img1.show()
@@ -106,9 +109,9 @@ print("Multiplier (higher for more contrast, lower for less). Strange things are
 #reading multiplier
 mult=float(input())
 
-print("Algae green value higher than other in (usually 10-12):")
+print("Algae green value higher than other in (usually 1.07, lower for more sensitive, higher for less):")
 
-alc=int(input())
+alc=float(input())
 
 #getting all files in directory. There must be only images
 for current_file in os.listdir(st):
