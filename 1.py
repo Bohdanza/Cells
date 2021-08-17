@@ -22,13 +22,13 @@ def img(path):
 
     pxa/=(img1.size[0]*img1.size[1])
 
-    for i in range(1, img1.size[0]):
+    for i in range(2, img1.size[0]):
         for j in range(0, img1.size[1]):
             tmpa0=(arr[i,j][0]+arr[i,j][1]+arr[i,j][2])/3
-            tmpa1=(arr[i-1,j][0]+arr[i-1,j][1]+arr[i-1,j][2])/3
+            tmpa1=(arr[i-2,j][0]+arr[i-2,j][1]+arr[i-2,j][2])/3
 
             if abs(tmpa0-tmpa1)>pxa*mult:
-                if arr[i-1,j]==(255,255,255):
+                if arr[i-2,j]==(255,255,255):
                     arr[i,j]=(0, 255, 0)
                 else:
                     arr[i,j]=(255, 0, 0)
@@ -47,7 +47,11 @@ def img(path):
 
                 if tmpf1>=alc:
                     arr[i,j]=(255, 255, 0)
-           
+
+    for i in range(1, img1.size[0]-1):
+        for j in range(0, img1.size[1]):
+            if ((arr[i,j]==(255, 255, 255))and(arr[i-1,j]==(255, 0, 0)))and(arr[i+1,j]==(255, 0, 0)):
+                arr[i,j]=(255,0,0)
 
     #uncomment for debug
     img1.show()
